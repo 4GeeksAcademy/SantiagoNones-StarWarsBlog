@@ -1,0 +1,17 @@
+
+.favorite-btn {
+  margin-left: 0.5rem;
+}
+
+
+.favorite-btn.active {
+  background-color: #ffc107 !important; 
+  border-color: #ffc107 !important;
+}
+.favorite-btn.active > i {
+  color: black !important; 
+}
+
+.favorite-btn:active {
+  transform: scale(0.95); 
+}
