@@ -10,7 +10,7 @@ const CharacterCard = ({ person }) => {
     
     return (
         <div className="card" style={{minWidth: "18rem"}}>
-            c
+            <img className="card-img-top" src="https://placehold.co/400x300" alt={person.name} />
             <div className="card-body text-start">
                 <h5 className="card-title">{person.name}</h5>
                 <p className="card-text">Gender: {person.gender}</p>
