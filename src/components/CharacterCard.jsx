@@ -5,12 +5,12 @@ import useGlobalReducer from "../hooks/useGlobalReducer";
 const CharacterCard = ({ person }) => {
     const {store, dispatch } = useGlobalReducer(); 
 
-    const isFavorite = store.favorites.some(fav => fav.uid === person.uid); 
+    const isFavorite = store.favorites.some(fav => fav.uid === person.uid && fav.hair_color);
 
     
     return (
         <div className="card" style={{minWidth: "18rem"}}>
-            <img className="card-img-top" src="https://placehold.co/400x300" alt={person.name} />
+            c
             <div className="card-body text-start">
                 <h5 className="card-title">{person.name}</h5>
                 <p className="card-text">Gender: {person.gender}</p>

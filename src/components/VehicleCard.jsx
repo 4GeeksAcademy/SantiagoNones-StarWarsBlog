@@ -5,7 +5,7 @@ import useGlobalReducer from "../hooks/useGlobalReducer";
 const VehicleCard = ({vehicle}) => {
     const {store, dispatch } = useGlobalReducer(); 
 
-    const isFavorite = store.favorites.some(fav => fav.uid === vehicle.uid); 
+    const isFavorite = store.favorites.some(fav => fav.uid === vehicle.uid && fav.vehicle_class);
 
     
     return (

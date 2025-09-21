@@ -5,7 +5,7 @@ import useGlobalReducer from "../hooks/useGlobalReducer";
 const PlanetCard = ({planet}) => {
     const {store, dispatch } = useGlobalReducer(); 
 
-    const isFavorite = store.favorites.some(fav => fav.uid === planet.uid); 
+    const isFavorite = store.favorites.some(fav => fav.uid === planet.uid && fav.population);
 
     
     return (
