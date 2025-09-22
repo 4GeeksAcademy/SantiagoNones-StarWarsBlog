@@ -1,38 +1,52 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import useGlobalReducer from "../hooks/useGlobalReducer";
+import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
+import PropTypes from "prop-types";
 
-const VehicleCard = ({vehicle}) => {
-    const {store, dispatch } = useGlobalReducer(); 
+// 1. Cambiamos la prop a { vehicle }
+const VehicleCard = ({ vehicle }) => {
+    const { store, dispatch } = useGlobalReducer();
 
-    const isFavorite = store.favorites.some(fav => fav.uid === vehicle.uid && fav.vehicle_class);
+    // 2. La comprobación de favorito ahora busca una propiedad única de vehículos, como 'model'
+    const isFavorite = store.favorites.some(fav => fav._id === vehicle._id);
 
-    
+    const handleToggleFavorite = () => {
+        if (isFavorite) {
+            dispatch({ type: "REMOVE_FAVORITE", payload: vehicle });
+        } else {
+            dispatch({ type: "ADD_FAVORITE", payload: vehicle });
+        }
+    };
+
     return (
-        <div className="card" style={{minWidth: "18rem"}}>
-            <img className="card-img-top" src="https://placehold.co/400x300" alt={vehicle.name} />
-            <div className="card-body text-start">
+        <div className="card" style={{ width: "18rem", flexShrink: 0 }}>
+            <img 
+                src={vehicle.image} 
+                className="card-img-top" 
+                alt={vehicle.name} 
+                style={{ height: "200px", objectFit: "cover" }}
+            />
+            <div className="card-body d-flex flex-column">
                 <h5 className="card-title">{vehicle.name}</h5>
-                <p className="card-text">Model: {vehicle.model}</p>
-                <p className="card-text">Class: {vehicle.vehicle_class}</p>
-
-
-                <div className="d-flex justify-content-between align-items-center mt-3">
-                    <Link to={`/single/${vehicle.uid}`}>     
-                        <span className="btn btn-outline-dark">Learn More</span>
+                <div className="d-flex justify-content-between align-items-center mt-auto">
+                    
+                    <Link to={`/single/vehicles/${vehicle._id}`} className="btn btn-outline-primary">
+                        Learn More!
                     </Link>
-
                     <button 
+                        onClick={() => dispatch({ type: "ADD_FAVORITE", payload: vehicle })} 
                         className={`btn btn-outline-warning favorite-btn ${isFavorite ? "active" : ""}`}
-                        onClick={() => dispatch({ type: "ADD_FAVORITE", payload: vehicle })}
                     >
                         <i className={`bi ${isFavorite ? "bi-heart-fill" : "bi-heart"}`}></i>
                     </button>
                 </div>
-                    
             </div>
         </div>
-        )
-}
+    );
+};
 
-export default VehicleCard
+VehicleCard.propTypes = {
+    vehicle: PropTypes.object.isRequired
+};
+
+export default VehicleCard;

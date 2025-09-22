@@ -1,17 +1,17 @@
-
 .favorite-btn {
   margin-left: 0.5rem;
 }
 
-
-.favorite-btn.active {
+/* Estado SELECCIONADO (cuando tiene la clase .active) */
+.btn.favorite-btn.active { /* <-- Más específico */
   background-color: #ffc107 !important; 
   border-color: #ffc107 !important;
 }
-.favorite-btn.active > i {
-  color: black !important; 
+.btn.favorite-btn.active > i {
+  color: black !important;
 }
 
+/* Efecto CLICK */
 .favorite-btn:active {
   transform: scale(0.95); 
 }

@@ -1,39 +1,52 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import useGlobalReducer from "../hooks/useGlobalReducer";
+import PropTypes from "prop-types";
+import useGlobalReducer from "../hooks/useGlobalReducer"; // La única importación que necesitamos para el store
 
 const CharacterCard = ({ person }) => {
-    const {store, dispatch } = useGlobalReducer(); 
+    // Usamos el hook para obtener el store y la función dispatch
+    const { store, dispatch } = useGlobalReducer();
 
-    const isFavorite = store.favorites.some(fav => fav.uid === person.uid && fav.hair_color);
+    // La lógica para saber si es favorito (usa _id)
+    const isFavorite = store.favorites.some(fav => fav._id === person._id);
 
-    
+    const handleToggleFavorite = () => {
+        if (isFavorite) {
+            dispatch({ type: "REMOVE_FAVORITE", payload: person });
+        } else {
+            dispatch({ type: "ADD_FAVORITE", payload: person });
+        }
+    };
+
     return (
-        <div className="card" style={{minWidth: "18rem"}}>
-            <img className="card-img-top" src="https://placehold.co/400x300" alt={person.name} />
-            <div className="card-body text-start">
+        <div className="card" style={{ width: "18rem", flexShrink: 0 }}>
+            <img 
+                src={person.image} 
+                className="card-img-top" 
+                alt={person.name} 
+                style={{ height: "200px", objectFit: "cover" }}
+            />
+            <div className="card-body d-flex flex-column">
                 <h5 className="card-title">{person.name}</h5>
-                <p className="card-text">Gender: {person.gender}</p>
-                <p className="card-text">Hair Color: {person.hair_color}</p>
-                <p className="card-text">Eye Color: {person.eye_color}</p>
 
-
-                <div className="d-flex justify-content-between align-items-center mt-3">
-                    <Link to={`/single/${person.uid}`}>     
-                        <span className="btn btn-outline-dark">Learn More</span>
+                <div className="d-flex justify-content-between align-items-center">
+                    <Link to={`/single/people/${person._id}`} className="btn btn-outline-primary">
+                        Learn More!
                     </Link>
-
                     <button 
+                        onClick={() => dispatch({ type: "ADD_FAVORITE", payload: person })} 
                         className={`btn btn-outline-warning favorite-btn ${isFavorite ? "active" : ""}`}
-                        onClick={() => dispatch({ type: "ADD_FAVORITE", payload: person })}
                     >
                         <i className={`bi ${isFavorite ? "bi-heart-fill" : "bi-heart"}`}></i>
                     </button>
                 </div>
-                    
             </div>
         </div>
-        )
-}
+    );
+};
 
-export default CharacterCard; 
+CharacterCard.propTypes = {
+    person: PropTypes.object.isRequired
+};
+
+export default CharacterCard;

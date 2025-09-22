@@ -8,7 +8,7 @@ export const router = createBrowserRouter(
     
       <Route path="/" element={<Layout />} errorElement={<h1>Not found!</h1>}>
         <Route path="/" element={<Home />} />
-        <Route path="/single/:theId" element={<Single />} />
+        <Route path="/single/:type/:_id" element={<Single />} />
       </Route>
     )
 );

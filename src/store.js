@@ -14,7 +14,7 @@ const storeReducer = (state, action) => {
             };
 
         case "ADD_FAVORITE":
-            const isFavorite = state.favorites.find(fav => fav.uid === action.payload.uid);
+            const isFavorite = state.favorites.find(fav => fav._id === action.payload._id);
             if (isFavorite) {
                 return state; 
             }
@@ -24,10 +24,9 @@ const storeReducer = (state, action) => {
             };
 
         case "REMOVE_FAVORITE":
-            const deleteFavorite = state.favorites.filter(fav => fav.uid !== action.payload.uid);
             return {
-                ... state,
-                favorites: deleteFavorite
+                ...state,
+                favorites: state.favorites.filter(fav => fav._id !== action.payload._id)
             };
 
         case "SET_PLANETS":

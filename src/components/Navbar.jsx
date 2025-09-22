@@ -7,7 +7,7 @@ export const Navbar = () => {
     const { store, dispatch } = useGlobalReducer();
 
     return (
-        <nav className="navbar navbar-light bg-light mb-3">
+        <nav className="navbar navbar-light bg-secondary mb-3">
             <div className="container">
                 <Link to="/">
                     <img 
