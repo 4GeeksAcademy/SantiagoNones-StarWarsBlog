@@ -12,7 +12,7 @@ export const Home = () => {
     useEffect(() => {
         const loadSummaries = async () => {
             try {
-                // Pedimos los 3 resúmenes a la vez
+                
                 const [peopleRes, planetsRes, vehiclesRes] = await Promise.all([
                     fetch("https://starwars-databank-server.vercel.app/api/v1/characters"),
                     fetch("https://starwars-databank-server.vercel.app/api/v1/locations"),
@@ -25,7 +25,7 @@ export const Home = () => {
                 const planetsData = await planetsRes.json();
                 const vehiclesData = await vehiclesRes.json();
 
-                // Guardamos directamente la lista de resúmenes (que está en la propiedad .data)
+                
                 dispatch({ type: "SET_PEOPLE", payload: peopleData.data });
                 dispatch({ type: "SET_PLANETS", payload: planetsData.data });
                 dispatch({ type: "SET_VEHICLES", payload: vehiclesData.data });

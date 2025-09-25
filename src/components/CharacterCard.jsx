@@ -4,10 +4,9 @@ import PropTypes from "prop-types";
 import useGlobalReducer from "../hooks/useGlobalReducer"; // La única importación que necesitamos para el store
 
 const CharacterCard = ({ person }) => {
-    // Usamos el hook para obtener el store y la función dispatch
+
     const { store, dispatch } = useGlobalReducer();
 
-    // La lógica para saber si es favorito (usa _id)
     const isFavorite = store.favorites.some(fav => fav._id === person._id);
 
     const handleToggleFavorite = () => {

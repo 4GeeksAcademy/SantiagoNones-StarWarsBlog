@@ -2,8 +2,8 @@
   margin-left: 0.5rem;
 }
 
-/* Estado SELECCIONADO (cuando tiene la clase .active) */
-.btn.favorite-btn.active { /* <-- Más específico */
+
+.btn.favorite-btn.active { 
   background-color: #ffc107 !important; 
   border-color: #ffc107 !important;
 }
@@ -11,7 +11,7 @@
   color: black !important;
 }
 
-/* Efecto CLICK */
+
 .favorite-btn:active {
   transform: scale(0.95); 
 }

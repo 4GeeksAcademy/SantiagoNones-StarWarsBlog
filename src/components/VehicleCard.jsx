@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import PropTypes from "prop-types";
 
-// 1. Cambiamos la prop a { vehicle }
+
 const VehicleCard = ({ vehicle }) => {
     const { store, dispatch } = useGlobalReducer();
 
-    // 2. La comprobación de favorito ahora busca una propiedad única de vehículos, como 'model'
+    
     const isFavorite = store.favorites.some(fav => fav._id === vehicle._id);
 
     const handleToggleFavorite = () => {

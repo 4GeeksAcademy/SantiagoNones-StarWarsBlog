@@ -35,11 +35,10 @@ export const Single = () => {
         loadItemDetails();
     }, [_id, type]);
 
-    // 4. El JSX que se muestra en pantalla
     return (
         <div className="container mt-5">
             {item ? (
-                // Si ya tenemos los datos del ítem, mostramos los detalles
+        
                 <div>
                     <div className="row">
                         <div className="col-md-4">
